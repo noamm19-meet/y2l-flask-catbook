@@ -1,6 +1,6 @@
 from flask import Flask
-from flask import render_template 
-from database import get_all_cats , get_cat_by_id
+from flask import *
+from database import *
 from flask import Flask, render_template, url_for , request ,session, escape, request, redirect
 
 
@@ -16,9 +16,9 @@ def Add_cat():
 	if request.method== 'GET':
 		return render_template('makecat.html')
 	else:
-		catname = request.form("txb_addcat")
-		createcat(catname)
-		return render_template('home.html')
+		catname = request.form['txb_addcat']
+		create_cat(catname)
+		return redirect(url_for('catbook_home'))
 
 
 @app.route('/cats/<int:id>')
